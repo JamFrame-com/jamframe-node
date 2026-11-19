@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1
+
+No code changes. The first version published through npm trusted publishing:
+no npm token is used, and every version carries a signed provenance statement.
+
 ## 0.1.0
 
 The first release.
