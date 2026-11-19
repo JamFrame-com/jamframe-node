@@ -1,0 +1,70 @@
+{
+  "name": "jamframe",
+  "version": "0.1.0",
+  "description": "Node.js and TypeScript client for the JamFrame API: render templates to images, carousels, PDFs and MP4 videos, design templates with AI, run workflows, post to social accounts and verify webhooks.",
+  "license": "MIT",
+  "author": {
+    "name": "Alphacloud Technologies Pte Ltd",
+    "email": "hello@jamframe.com"
+  },
+  "homepage": "https://github.com/JamFrame-com/jamframe-node#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JamFrame-com/jamframe-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JamFrame-com/jamframe-node/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18.17"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --import tsx --test test/*.test.ts",
+    "test:smoke": "node --import tsx --test test/live.smoke.test.ts",
+    "prepack": "npm run build",
+    "spec:update": "node scripts/update-spec.mjs"
+  },
+  "keywords": [
+    "jamframe",
+    "api",
+    "sdk",
+    "render",
+    "image generation",
+    "templates",
+    "carousel",
+    "pdf",
+    "video",
+    "ai",
+    "social media",
+    "jamframe-api"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "yaml": "^2.9.1"
+  }
+}
