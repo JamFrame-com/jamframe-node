@@ -144,7 +144,7 @@ describe('the SDK matches the API spec', () => {
       ['SocialAnalyticsInsights.platforms', fieldsOf<T.SocialAnalyticsInsights['platforms'][number]>()(['platform', 'platformName', 'posts', 'totals', 'averages', 'engagementRate'])],
       ['AiStatus', fieldsOf<T.AiStatus>()(['status', 'models', 'prices', 'credits'])],
       ['AiStatus.prices', fieldsOf<T.AiStatus['prices'][number]>()(['operation', 'credits', 'per', 'unit', 'label'])],
-      ['AiStatus.credits', fieldsOf<T.AiStatus['credits']>()(['planCode', 'used', 'reserved', 'limit', 'remaining', 'periodStart', 'periodEnd', 'active'])],
+      ['AiStatus.credits', fieldsOf<T.AiStatus['credits']>()(['planCode', 'used', 'reserved', 'limit', 'remaining', 'periodStart', 'periodEnd', 'active', 'oneTime'])],
       ['BackgroundRemoval', fieldsOf<T.BackgroundRemoval>()(['url', 'width', 'height', 'method', 'model', 'scaled', 'creditsCharged', 'asset'])],
       ['BrandAsset', fieldsOf<T.BrandAsset>()(['id', 'kind', 'name', 'url', 'mimeType', 'size', 'createdAt', 'tags', 'meta'])],
       ['Transcription', fieldsOf<T.Transcription>()(['language', 'duration', 'text', 'cues', 'srt', 'vtt', 'words', 'creditsCharged', 'model', 'mock'])],

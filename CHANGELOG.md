@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- `AiStatus.credits.oneTime`: true on the Free plan, whose AI credits are
+  given once and don't renew at `periodEnd`.
+
 ## 0.1.1
 
 No code changes. The first version published through npm trusted publishing:

@@ -848,6 +848,8 @@ export interface AiStatus {
     periodEnd: string;
     /** False when the subscription isn't active. */
     active: boolean;
+    /** True on the Free plan: its credits are given once and don't renew at `periodEnd`. */
+    oneTime: boolean;
   };
 }
 
