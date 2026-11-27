@@ -334,6 +334,15 @@ export class Renders extends Resource {
   async get(id: string, options?: RequestOptions): Promise<RenderItem> {
     return (await this.client.request<{ render: RenderItem }>('GET', `/renders/${enc(id)}`, { options })).data.render;
   }
+
+  /**
+   * `DELETE /renders/{id}/files`: delete the render's stored files now. The
+   * render stays in the log, with `filesDeleted` true and no `outputs`.
+   */
+  async deleteFiles(id: string, options?: RequestOptions): Promise<RenderItem> {
+    return (await this.client.request<{ render: RenderItem }>('DELETE', `/renders/${enc(id)}/files`, { options })).data
+      .render;
+  }
 }
 
 /** Render jobs: MP4 renders and `async` renders. */

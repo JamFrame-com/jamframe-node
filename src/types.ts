@@ -314,6 +314,11 @@ export interface RenderResult {
   urls?: string[];
   /** `url` renders: when the links stop working (`expiresIn` after they were handed out). */
   expiresAt?: string;
+  /**
+   * Paid plans whose organization keeps files longer than 8 days: one link per
+   * file, in the order of `urls`, that works for as long as the file is kept.
+   */
+  permanentUrls?: string[];
   type: 'url' | 'base64';
   format: OutputFormat;
   pages: number[];
@@ -377,6 +382,8 @@ export interface RenderOutputFile {
   /** The page this file shows (a PDF's first page). */
   page: number | null;
   expiresAt?: string;
+  /** Paid plans, files kept longer than 8 days: a link that works for as long as the file is kept. */
+  permanentUrl?: string;
 }
 
 export interface RenderItem {
@@ -390,9 +397,14 @@ export interface RenderItem {
   credits: number;
   status: 'succeeded' | 'failed';
   durationMs: number;
+  /** Empty once the files are deleted (`filesDeleted`). */
   outputs: RenderOutputFile[];
   error: string | null;
   cached: boolean;
+  /** When the stored files are deleted (the Data retention setting); `null` when kept until you delete them. */
+  filesExpireAt: string | null;
+  /** The files are gone: past `filesExpireAt`, or deleted with `renders.deleteFiles()`. */
+  filesDeleted: boolean;
 }
 
 export interface RenderTotals {
@@ -956,7 +968,7 @@ export interface WorkflowDefinition {
     intervalMinutes?: 15 | 30 | 60 | 180 | 360 | 720 | 1440;
   };
   source: {
-    kind: 'google_sheets' | 'file_url' | 'airtable' | 'drive_folder' | 'webhook';
+    kind: 'google_sheets' | 'file_url' | 'airtable' | 'notion' | 'drive_folder' | 'webhook';
     [field: string]: unknown;
   };
   transforms?: { kind: 'filter' | 'sort' | 'limit' | 'pick' | 'dedupe'; [field: string]: unknown }[];
@@ -971,7 +983,7 @@ export interface WorkflowDefinition {
     includePages?: number[];
   };
   deliver?: {
-    kind: 'url' | 'webhook' | 'slack' | 'social' | 'sheets_writeback' | 'drive_upload' | 's3_upload';
+    kind: 'url' | 'webhook' | 'slack' | 'social' | 'sheets_writeback' | 'notion_update' | 'drive_upload' | 's3_upload';
     [field: string]: unknown;
   }[];
 }

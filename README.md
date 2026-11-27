@@ -190,6 +190,10 @@ for await (const render of client.renders.iterate()) console.log(render.id, rend
 // One render by id (the `renderId` of a render, or of a job's `result`).
 const render = await client.renders.get(data.renderId);
 render.status, render.credits, render.outputs; // [{ url, page, expiresAt }, …]
+render.filesExpireAt; // when the files are deleted (Data retention, 90 days by default)
+
+// Delete the files now. The render stays in the log, with filesDeleted: true.
+await client.renders.deleteFiles(render.id);
 ```
 
 ## Signed URLs
